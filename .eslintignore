@@ -1,0 +1,8 @@
+# Blackholes
+node_modules/
+
+# Build Files
+build/
+
+# Editor Related
+.vscode/

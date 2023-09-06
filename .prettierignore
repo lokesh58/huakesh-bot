@@ -1,0 +1,11 @@
+# Blackholes
+node_modules/
+
+# Build Files
+build/
+
+# Editor Related
+.vscode/
+
+# Module Manager Managed Files
+pnpm-lock.yaml
