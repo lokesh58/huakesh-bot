@@ -6,3 +6,6 @@ build/
 
 # Editor Related
 .vscode/
+
+# Secrets
+.env
