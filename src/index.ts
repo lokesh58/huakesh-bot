@@ -19,7 +19,7 @@ async function loginClient() {
     client.logger.info(`Logged in as ${client.user?.username}`);
   } catch (err) {
     client.logger.fatal(`Error while logging in:\n${err}`);
-    client.destroy();
+    client.destroy().catch(console.error);
   }
 }
 
