@@ -58,7 +58,7 @@ export class InfoCommand extends Command {
 
   private getInfoEmbed(data: InfoData): EmbedBuilder {
     const wsHeartbeat = Math.round(this.container.client.ws.ping);
-    const uptime = this.getFormattedUptime();
+    const uptime = InfoCommand.getFormattedUptime();
     return new EmbedBuilder()
       .setTitle("Huakesh's Info")
       .setDescription(
@@ -70,13 +70,13 @@ export class InfoCommand extends Command {
       );
   }
 
-  private getFormattedUptime(): string {
+  private static getFormattedUptime(): string {
     const uptime = this.getUptime();
     const formattedUptime = this.formatUptime(uptime);
     return formattedUptime;
   }
 
-  private getUptime(): UptimeData {
+  private static getUptime(): UptimeData {
     let leftSeconds = Math.floor(process.uptime());
     const days = Math.floor(leftSeconds / SECONDS_PER_DAY);
     leftSeconds %= SECONDS_PER_DAY;
@@ -88,20 +88,17 @@ export class InfoCommand extends Command {
     return { days, hours, minutes, seconds };
   }
 
-  private formatUptime(uptime: UptimeData): string {
+  private static formatUptime(uptime: UptimeData): string {
     const { days, hours, minutes, seconds } = uptime;
-    const formattedUptime = [
-      `${days} ${days === 1 ? "day" : "days"}`,
-      `${hours} ${hours === 1 ? "hour" : "hours"}`,
-      `${minutes} ${minutes === 1 ? "minute" : "minutes"}`,
-      `${seconds} ${seconds === 1 ? "second" : "seconds"}`,
-    ]
-      .filter((t) => !t.startsWith("0"))
-      .join(" ");
-
-    if (!formattedUptime) {
-      return "Less than a second";
+    let formattedUptime = "";
+    if (days > 0) {
+      formattedUptime += `${days} ${days > 1 ? "days" : "day"} `;
     }
+    formattedUptime += [hours, minutes, seconds].map(this.get2Digits).join(":");
     return formattedUptime;
+  }
+
+  private static get2Digits(x: number) {
+    return x.toLocaleString(undefined, { minimumIntegerDigits: 2 });
   }
 }
