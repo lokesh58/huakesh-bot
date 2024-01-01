@@ -1,8 +1,6 @@
 # Blackholes
 node_modules/
+.pnpm-store/
 
 # Build Files
 build/
-
-# Editor Related
-.vscode/

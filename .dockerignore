@@ -1,0 +1,17 @@
+.devcontainer
+.git
+.pnpm-store
+.vscode
+build
+node_modules
+.dockerignore
+.eslintignore
+.eslintrc.json
+.gitignore
+.nvmrc
+.prettierignore
+.prettierrc.json
+compose.yaml
+Dockerfile
+LICENSE
+README.md
